@@ -9,7 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Set your desired number of items per page
+  const [itemsPerPage, setItemPerPage] = useState(10);
 
   const handlePageChanged = (page) => {
     setCurrentPage(page);
@@ -50,11 +50,12 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="py-2 fixed bottom-0 left-0 w-full">
+      <div className="py-2 fixed bottom-0 left-0 w-full bg-white">
         <Pagination
           totalItems={DummyData.length}
           itemsPerPage={itemsPerPage}
           onPageChanged={handlePageChanged}
+          setItemPerPage={setItemPerPage}
         />
       </div>
     </section>

@@ -7,6 +7,7 @@ export default function Pagination({
   totalItems,
   itemsPerPage,
   onPageChanged,
+  setItemPerPage,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -28,16 +29,12 @@ export default function Pagination({
   };
 
   const handleInputChange = (e) => {
-    const { value } = e.target;
-    if (value && /^\d+$/.test(value)) {
-      const page = parseInt(value);
-      goToPage(page);
-    }
+  setItemPerPage(parseInt(e.target.value));
   };
 
   return (
-    <div className="flex justify-center items-center relative">
-      <div className="flex gap-8">
+    <div className="flex md:justify-center justify-between items-center md:relative">
+      <div className="flex md:gap-8 gap-2 items-center">
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}
@@ -53,8 +50,8 @@ export default function Pagination({
               onClick={() => goToPage(page)}
               className={
                 currentPage === page
-                  ? "bg-yellow-300 p-2 w-8 h-8 flex justify-center items-center rounded-md"
-                  : "border border-black  w-8 h-8 flex justify-center items-center rounded-md"
+                  ? "bg-yellow-300 p-1 md:w-8 w-6 md:h-8 h-6 flex justify-center items-center rounded-md"
+                  : "border border-black  md:w-8 w-6 md:h-8 h-6 flex justify-center items-center rounded-md"
               }
             >
               {page}
@@ -71,7 +68,7 @@ export default function Pagination({
         </button>
       </div>
 
-      <span className="absolute right-0">
+      <span className="md:absolute right-0">
         Rows per page:{" "}
         <input
           type="number"
